@@ -10,6 +10,17 @@
 #import "MenuViewController.h"
 
 @interface AnimationViewController ()
+{
+    
+   
+    CGPoint firstTouchPoint;
+    
+    //xd,yd destance between imge center and my touch center
+    float xd;
+    float yd;
+}
+@property (weak, nonatomic) IBOutlet UIImageView *loaderImage;
+@property(strong,nonatomic) UIPanGestureRecognizer *panRecognizer;
 @end
 
 @implementation AnimationViewController
@@ -34,7 +45,58 @@
     [super viewDidLoad];
     
     self.title = @"Animation";
+    [[self loaderImage]setUserInteractionEnabled:YES];
+   
+
+//    self.panRecognizer =[[UIPanGestureRecognizer alloc]
+//     initWithTarget: self
+//     action: @selector(handlePan:)];
+//    NSLog(@"%@",self.loaderImage);
+//    [self.loaderImage addGestureRecognizer:self.panRecognizer];
+
 }
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+   
+    UITouch* bTouch = [touches anyObject];
+    if ([bTouch.view isEqual:[self loaderImage]]) {
+        firstTouchPoint = [bTouch locationInView:[self view]];
+        xd = firstTouchPoint.x - [[bTouch view]center].x;
+        yd = firstTouchPoint.y - [[bTouch view]center].y;
+    }
+
+}
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch* mTouch = [touches anyObject];
+    if (mTouch.view == [self loaderImage]) {
+        CGPoint cp = [mTouch locationInView:[self view]];
+        [[mTouch view]setCenter:CGPointMake(cp.x-xd, cp.y-yd)];
+    }
+}
+//-(void) handlePan:
+//(UIGestureRecognizer *)sender
+//{
+//    UIPanGestureRecognizer *panRecognizer =
+//    (UIPanGestureRecognizer *)sender;
+//    if (panRecognizer.state ==
+//        UIGestureRecognizerStateBegan ||
+//        panRecognizer.state ==
+//        UIGestureRecognizerStateChanged)
+//    {
+//        CGPoint currentPoint =
+//        self.loaderImage.center;
+//        CGPoint translation =
+//        [panRecognizer translationInView:
+//         self.loaderImage.superview];
+//        self.loaderImage.center = CGPointMake
+//        (currentPoint.x + translation.x,
+//         currentPoint.y + translation.y);
+//        [panRecognizer setTranslation: CGPointZero
+//                               inView: self.loaderImage.superview];
+//    }
+//}
+
 
 - (IBAction)backAction:(id)sender
 {
@@ -44,5 +106,12 @@
 
 - (IBAction)didPressSpinButton:(id)sender
 {
+    CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+        animation.fromValue = [NSNumber numberWithFloat:0.0f];
+        animation.toValue = [NSNumber numberWithFloat: 2*M_PI];
+        animation.duration = 10.0f;
+        animation.repeatCount = INFINITY;
+        [self.loaderImage.layer addAnimation:animation forKey:@"SpinAnimation"];
+    
 }
 @end

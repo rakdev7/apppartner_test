@@ -45,8 +45,29 @@
     // TODO: Make the UI look like it does in the mock-up
     
     [super viewDidLoad];
+   // [self preferredStatusBarStyle]
+
     
-    self.title = @"Coding Tasks";
+    
+    for (UIButton *menuBtn in _menuButtons) {
+        menuBtn.layer.cornerRadius = 25;
+    }
+    
+    
+   // [self setTitle:@"coding"];
+    
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationItem.title  = @"Coding Tasks...";
+
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.navigationItem.title = @"Back";
 }
 
 

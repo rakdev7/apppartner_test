@@ -39,9 +39,8 @@
     [super viewDidLoad];
     self.messages = [[NSMutableArray alloc] init];
     [self configureTable:self.chatTable];
-    self.title = @"Chat";
-    
-    
+    self.navigationItem.title = @"Chat";
+
     // TODO: Remove test data when we have actual data from the server loaded
     [self.messages addObject:[[Message alloc] initWithTestName:@"James" withTestMessage:@"Hey Guys!"]];
     [self.messages addObject:[[Message alloc] initWithTestName:@"Paul" withTestMessage:@"What's up?"]];
@@ -97,6 +96,7 @@
 - (IBAction)backAction:(id)sender
 {
     MenuViewController *mainMenuViewController = [[MenuViewController alloc] init];
+
     [self.navigationController pushViewController:mainMenuViewController animated:YES];
 }
 

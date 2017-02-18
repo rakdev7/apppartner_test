@@ -46,6 +46,8 @@
 {
     [super viewDidLoad];
     self.title = @"Login";
+//    self.navigationController.navigationBar.topItem.title = @"Back";
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,8 +62,19 @@
     [self.navigationController pushViewController:mainMenuViewController animated:YES];
 }
 
+
+
 - (IBAction)didPressLoginButton:(id)sender
 {
+        
+    LoginClient *client = [[LoginClient alloc]init];
+    [client loginWithUsername:@"AppPartner" password:@"qwerty" completion:^(NSDictionary *responseDict) {
+        
+        NSLog(@"%@",responseDict);
+        
+    }];
+    
+    
 }
 
 @end

@@ -10,4 +10,7 @@
 
 @interface MenuViewController : UIViewController
 
+
+@property(strong,nonatomic) IBOutletCollection() NSArray * menuButtons;
+
 @end
