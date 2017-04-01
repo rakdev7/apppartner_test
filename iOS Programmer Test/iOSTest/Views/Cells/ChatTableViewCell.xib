@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,27 +16,50 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="58.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQE-qa-aW7">
-                        <rect key="frame" x="60" y="8" width="252" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQE-qa-aW7">
+                        <rect key="frame" x="74" y="6" width="254" height="18"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="QXL-I2-8fZ">
+                        <rect key="frame" x="74" y="26" width="230" height="26"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QXL-I2-8fZ">
-                        <rect key="frame" x="60" y="31" width="252" height="20.5"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ec4-ZJ-bAf">
+                        <rect key="frame" x="16" y="0.0" width="42" height="42"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="42" id="f7k-uP-bxW"/>
+                            <constraint firstAttribute="height" constant="42" id="uEz-05-jrN"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="QXL-I2-8fZ" secondAttribute="bottom" constant="-2" id="0qG-hM-yCL"/>
+                    <constraint firstItem="QXL-I2-8fZ" firstAttribute="leading" secondItem="ec4-ZJ-bAf" secondAttribute="trailing" constant="16" id="1mE-Sa-JJh"/>
+                    <constraint firstItem="ec4-ZJ-bAf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="54v-qv-JlX"/>
+                    <constraint firstItem="eQE-qa-aW7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="B7a-Rv-Rwy"/>
+                    <constraint firstItem="eQE-qa-aW7" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="16" id="LHc-pq-PBp"/>
+                    <constraint firstItem="QXL-I2-8fZ" firstAttribute="top" secondItem="eQE-qa-aW7" secondAttribute="bottom" constant="2" id="Rgn-Ht-kGd"/>
+                    <constraint firstItem="ec4-ZJ-bAf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Vy7-5N-1Kd"/>
+                    <constraint firstAttribute="bottom" secondItem="QXL-I2-8fZ" secondAttribute="bottom" constant="6" id="eey-pg-ISS"/>
+                    <constraint firstItem="QXL-I2-8fZ" firstAttribute="leading" secondItem="eQE-qa-aW7" secondAttribute="leading" id="ihl-fa-e0Z"/>
+                    <constraint firstAttribute="trailing" secondItem="QXL-I2-8fZ" secondAttribute="trailing" constant="16" id="ujM-hE-V94"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="body" destination="QXL-I2-8fZ" id="v6l-xu-u74"/>
+                <outlet property="cellImageView" destination="ec4-ZJ-bAf" id="zzl-xU-tat"/>
                 <outlet property="header" destination="eQE-qa-aW7" id="Njh-tA-sWZ"/>
             </connections>
             <point key="canvasLocation" x="35" y="61.5"/>

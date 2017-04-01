@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ChatClient.h"
+
 
 @interface ChatViewController : UIViewController
 

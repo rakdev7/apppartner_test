@@ -37,21 +37,36 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.messages = [[NSMutableArray alloc] init];
+    
+    
     [self configureTable:self.chatTable];
     self.navigationItem.title = @"Chat";
 
-    // TODO: Remove test data when we have actual data from the server loaded
-    [self.messages addObject:[[Message alloc] initWithTestName:@"James" withTestMessage:@"Hey Guys!"]];
-    [self.messages addObject:[[Message alloc] initWithTestName:@"Paul" withTestMessage:@"What's up?"]];
-    [self.messages addObject:[[Message alloc] initWithTestName:@"Amy" withTestMessage:@"Hey! :)"]];
-    [self.messages addObject:[[Message alloc] initWithTestName:@"James" withTestMessage:@"Want to grab some food later?"]];
-    [self.messages addObject:[[Message alloc] initWithTestName:@"Paul" withTestMessage:@"Sure, time and place?"]];
-    [self.messages addObject:[[Message alloc] initWithTestName:@"Amy" withTestMessage:@"YAS! I am starving!!!"]];
-    [self.messages addObject:[[Message alloc] initWithTestName:@"James" withTestMessage:@"1 hr at the Local Burger sound good?"]];
-    [self.messages addObject:[[Message alloc] initWithTestName:@"Paul" withTestMessage:@"Sure thing"]];
-    [self.messages addObject:[[Message alloc] initWithTestName:@"Amy" withTestMessage:@"See you there :P"]];
+   
+
+    
     [self.chatTable reloadData];
+    
+    
+  
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        self.client = [[ChatClient alloc]init];
+        [self.client fetchChatData:^(NSArray<Message *>* currentMessages) {
+            self.messages = [NSMutableArray arrayWithArray:currentMessages];
+    
+        
+    [self.chatTable reloadData];
+    
+            
+} withError:^(NSString *error) {}];
+        
+    });
+        
 }
 
 - (void)configureTable:(UITableView *)tableView
@@ -59,7 +74,11 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     [tableView registerNib:[UINib nibWithNibName:@"ChatTableViewCell" bundle:nil] forCellReuseIdentifier:@"ChatTableViewCell"];
-    tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    //tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
+tableView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0);
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+ 
+
 }
 
 
@@ -87,9 +106,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 58.0f;
+
+    return UITableViewAutomaticDimension;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
+}
 
 #pragma mark - IBAction
 

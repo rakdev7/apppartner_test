@@ -29,7 +29,7 @@
  *    A valid password is 'qwerty'
  **/
 
-- (void)loginWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)(NSDictionary *))completion
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)(NSMutableDictionary *))completion
 {
     NSString *post = [NSString stringWithFormat:@"username=%@&password=%@",username, password];
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
@@ -50,7 +50,13 @@
         NSDate *response_Time= [NSDate date];
         NSTimeInterval executionTime = [response_Time  timeIntervalSinceDate:request_Time];
         NSLog(@"%f",executionTime);
-        NSDictionary *object = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        
+        NSString *execTime = [NSString stringWithFormat:@"%f",executionTime];
+        
+        NSMutableDictionary *object = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        
+        [object setObject:execTime forKey:@"loginTime"];
+        
         
         dispatch_async(dispatch_get_main_queue(), ^{
             completion(object);
@@ -59,7 +65,6 @@
     }];
     
     [postDataTask resume];
-
 
 }
 

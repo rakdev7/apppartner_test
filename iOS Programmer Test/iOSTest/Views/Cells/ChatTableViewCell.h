@@ -12,5 +12,6 @@
 @interface ChatTableViewCell : UITableViewCell
 
 - (void)setCellData:(Message *)message;
+//@property (weak, nonatomic) IBOutlet UIImageView *cellImageView;
 
 @end

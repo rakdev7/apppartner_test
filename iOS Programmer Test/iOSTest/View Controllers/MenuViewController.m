@@ -7,11 +7,15 @@
 //
 
 #import "ChatViewController.h"
+//#import "ChatClient.h"
 #import "LoginViewController.h"
 #import "MenuViewController.h"
 #import "AnimationViewController.h"
 
 @interface MenuViewController ()
+//@property (nonatomic, strong) ChatClient *client;
+//@property (nonatomic, strong) NSMutableArray *messages;
+
 @property (weak, nonatomic) IBOutlet UIButton *chatButton;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *animationButton;
@@ -46,8 +50,9 @@
     
     [super viewDidLoad];
    // [self preferredStatusBarStyle]
-
     
+    
+
     
     for (UIButton *menuBtn in _menuButtons) {
         menuBtn.layer.cornerRadius = 25;
@@ -61,10 +66,15 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navigationItem.title  = @"Coding Tasks...";
+    self.navigationItem.title  = @"Coding Tasks";
+    
 
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+
+    [self.navigationController.navigationBar setFrame:CGRectMake(0, 0,self.view.frame.size.width,64.0)];
+}
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.navigationItem.title = @"Back";
@@ -74,6 +84,8 @@
 - (IBAction)didPressChatButton:(id)sender
 {
     ChatViewController *chatViewController = [[ChatViewController alloc] init];
+    
+    
     [self.navigationController pushViewController:chatViewController animated:YES];
 }
 
@@ -86,6 +98,7 @@
 - (IBAction)didPressAnimationButton:(id)sender
 {
     AnimationViewController *animationViewController = [[AnimationViewController alloc] init];
+    [self.navigationController.navigationBar setFrame:CGRectMake(0, 0,self.view.frame.size.width,64.0)];
     [self.navigationController pushViewController:animationViewController animated:YES];
 }
 

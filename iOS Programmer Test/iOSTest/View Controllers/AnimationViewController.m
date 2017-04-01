@@ -74,30 +74,16 @@
         [[mTouch view]setCenter:CGPointMake(cp.x-xd, cp.y-yd)];
     }
 }
-//-(void) handlePan:
-//(UIGestureRecognizer *)sender
-//{
-//    UIPanGestureRecognizer *panRecognizer =
-//    (UIPanGestureRecognizer *)sender;
-//    if (panRecognizer.state ==
-//        UIGestureRecognizerStateBegan ||
-//        panRecognizer.state ==
-//        UIGestureRecognizerStateChanged)
-//    {
-//        CGPoint currentPoint =
-//        self.loaderImage.center;
-//        CGPoint translation =
-//        [panRecognizer translationInView:
-//         self.loaderImage.superview];
-//        self.loaderImage.center = CGPointMake
-//        (currentPoint.x + translation.x,
-//         currentPoint.y + translation.y);
-//        [panRecognizer setTranslation: CGPointZero
-//                               inView: self.loaderImage.superview];
-//    }
-//}
+
+-(void)viewWillAppear:(BOOL)animated{
+
+}
+
+-(void)viewDidAppear:(BOOL)animated{
 
 
+   
+}
 - (IBAction)backAction:(id)sender
 {
     MenuViewController *mainMenuViewController = [[MenuViewController alloc] init];

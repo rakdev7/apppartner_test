@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface LoginClient : NSObject
-- (void)loginWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)(NSDictionary *))completion;
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)(NSMutableDictionary *))completion;
 @end
